@@ -10,6 +10,14 @@ import java.util.List;
 public class BillManager {
     private BillDao billDao;
 
+    public BillDao getBillDao() {
+        return billDao;
+    }
+
+    public void setBillDao(BillDao billDao) {
+        this.billDao = billDao;
+    }
+
     public Bill getBill(List<BillingProducts> billingProductsList) {
         Bill bill = new Bill();
         bill.setId(1);
