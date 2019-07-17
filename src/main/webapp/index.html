@@ -1,5 +1,28 @@
-<html>
-<body>
-<h2>Hello World!</h2>
+<!doctype html>
+<html ng-app="my-store">
+<head>
+    <title>My Store</title>
+    <link rel="icon" href="assets/store-icon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/controllers.js"></script>
+
+</head>
+<body class="container-fluid">
+
+    <div data-ng-controller="ContainerCtrl" ui-view></div>
+
 </body>
 </html>

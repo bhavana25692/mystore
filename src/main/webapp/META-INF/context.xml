@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-</beans>
+<Context antiJARLocking="true" path="/mystore">
+    <Resource name="jdbc/mystore" auth="Container"
+              maxActive="8" maxIdle="4"
+              type="javax.sql.DataSource"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:mysql://localhost:3306/Test"
+              username="root" password="admin"/>
+</Context>

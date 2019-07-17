@@ -1,0 +1,100 @@
+<div ui-view>
+
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" heading="Select Products" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="card bg-info">
+              <div class="row vertical-align">
+                <div class="col-lg-3">
+                  <div>
+                    Name:
+                  </div><br>
+                  <label>
+                    Rate:
+                  </label>
+                </div>
+                <div class="col-lg-9 text-right">
+                  <div>
+                    Abc{{}}
+                  </div><br>
+                  <label>
+                    100{{}}
+                  </label>
+                </div>
+                <div class="col-lg-12">
+                  <button class="btn btn-danger btn-sm pull-right" ng-if="!showSelectQty" ng-click="showAddRemove();addItem($index)">Add</button>
+                  <div class="btn-group pull-right" role="group" ng-if="showSelectQty">
+                    <button type="button" class="btn btn-sm btn-danger" ng-click = "removeItem($index)">-</button>
+                    <button type="button" class="btn btn-sm btn-danger">{{qty}}</button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-disabled="disableAdd" ng-click = "addItem($index)">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <button class="pull-right btn btn-success" ng-click="showSelectedProducts()">Proceed to Bill</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div uib-accordion-group class="panel-default" heading="Selected Products">
+      <div class="panel-body">
+        <div class="ibox-content">
+          <div class="table-responsive">
+            <table class="table shoping-cart-table">
+              <tbody>
+              <tr>
+                <td class="desc">
+                  <h3>
+                    {{}}Product Name
+                  </h3>
+
+                  <div class="m-t-sm">
+                    <a href="#" class="text-muted"><i class="glyphicon glyphicon-trash"></i> Remove item</a>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="small">{{}}100</span>
+                </td>
+                <td width="65">
+                  <input type="number" ng-model="qty" class="form-control" placeholder="{{qty}}">
+                </td>
+                <td>
+                  <h4 class="pull-right">
+                    {{cost}}rate*qty
+                  </h4>
+                </td>
+              </tr>
+              </tbody>
+              <tfooter>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <h4>{{qty}}</h4>
+                  </td>
+                  <td class="pull-right">
+                    <h3>{{}}total Cost</h3>
+                  </td>
+                </tr>
+              </tfooter>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <button class="btn btn-success pull-right" ng-click="openBillModal()">
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </uib-accordion>
+</div>

@@ -331,14 +331,6 @@
       <version>0.6.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.qoppa</groupId>
-      <artifactId>jPDFNotes</artifactId>
-      <version>1</version>
-      <!-- 		    <scope>system</scope> -->
-      <!-- 		    <systemPath>${project.basedir}/lib/jPDFNotes.jar</systemPath> -->
-    </dependency>
-
     <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
     <dependency>
       <groupId>postgresql</groupId>
@@ -372,9 +364,20 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <inherited>true</inherited>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>2.6</version>
         <configuration>
+          <filtering>true</filtering>
           <webResources>
             <resource>
               <filtering>true</filtering>
@@ -388,33 +391,49 @@
             <manifest>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
+            <manifestEntries>
+              <Implementation-Build>${buildNumber}</Implementation-Build>
+            </manifestEntries>
           </archive>
-          <packagingExcludes>**/config.properties</packagingExcludes>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
-        <inherited>true</inherited>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <pushChanges>true</pushChanges>
+          <goals>install</goals>
+          <localCheckout>true</localCheckout>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
-        <dependencies>
-          <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.2.2</version>
-          </dependency>
-        </dependencies>
+        <configuration>
+          <path>/mystore</path>
+          <contextFile>src/main/webapp/META-INF/context.xml</contextFile>
+          <!-- <serverXml>src/test/resources/tomcatconf/server.xml</serverXml> -->
+<!--          <tomcatUsers>src/test/resources/tomcatconf/tomcat-users.xml</tomcatUsers>-->
+          <contextReloadable>true</contextReloadable>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.12.0</version>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.17</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
 </project>
