@@ -10,9 +10,11 @@ public class BillingProducts {
         super();
     }
 
-    public BillingProducts(int quantity, Product product) {
+    public BillingProducts(int quantity, Product product, double tax, double costAmount) {
         this.quantity = quantity;
         this.product = product;
+        this.tax = tax;
+        this.costAmount = costAmount;
     }
 
     public int getQuantity() {

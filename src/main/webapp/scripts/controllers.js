@@ -3,16 +3,17 @@ app.controller('ContainerCtrl',
     function($scope, $rootScope, $state, StoreService, $timeout){
 
         $scope.showSelectQty = [];
-        $scope.disableAdd = false;
+        $scope.disableAdd = [];
         $scope.selectedProducts = [];
         $scope.productList = [];
         $scope.billingProducts = [];
+        $scope.showBillView = false;
 
         $scope.addItem = function($index) {
             var productAdded = ++$scope.productList[$index].quantity; //Increment product qty
-            $scope.qty++; //Increament total no. of products
             if(productAdded == 10) {
-                $scope.disableAdd = true;
+                debugger
+                $scope.disableAdd[$index] = true;
             }
             $scope.showSelectQty[$index] = true;
         };
@@ -21,7 +22,8 @@ app.controller('ContainerCtrl',
             var productAdded = --$scope.productList[$index].quantity; //Decrement product qty
             if(productAdded == 0) {
                 $scope.showSelectQty[$index] = false;
-                $scope.productList.splice($index,1);
+            } else if(productAdded < 10) {
+                $scope.disableAdd[$index] = false;
             }
         };
 
@@ -50,6 +52,7 @@ app.controller('ContainerCtrl',
             StoreService.getBill($scope.billingProducts)
                 .then(function (resp) {
                     $scope.billData = resp.data;
+                    $scope.showBillView = true;
                 },function (error) {
                     console.log(error);
                     $scope.error = error.data.message;

@@ -1,10 +1,9 @@
 <div ui-view>
-
   <div class="panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" ng-if="!showBillView">
       Select Product
     </div>
-    <div class="panel-body">
+    <div class="panel-body" ng-if="!showBillView">
       <div class="row">
         <div class="col-lg-3" ng-repeat="product in productList">
           <div class="card bg-info" ng-init="product.quantity = 0; showSelectQty[$index] = false">
@@ -30,103 +29,111 @@
                 <div class="btn-group pull-right" role="group" ng-if="showSelectQty[$index]">
                   <button type="button" class="btn btn-sm btn-danger" ng-click = "removeItem($index)">-</button>
                   <button type="button" class="btn btn-sm btn-danger">{{product.quantity}}</button>
-                  <button type="button" class="btn btn-sm btn-danger" ng-disabled="disableAdd" ng-click = "addItem($index)">+</button>
+                  <button type="button" class="btn btn-sm btn-danger" ng-disabled="disableAdd[$index]" ng-click = "addItem($index)">+</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" ng-if="!showBillView">
         <div class="col-lg-12">
           <button class="pull-right btn btn-success" ng-click="constructRequestBody()">Proceed to Bill</button>
         </div>
       </div>
+    </div>
 
-      <div class="panel-default">
-        <div class="panel-heading">
-          Bill
-        </div>
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
+    <div class="panel-default m-t-md" ng-if="showBillView">
+      <div class="panel-heading">
+        Bill
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr class="info">
+              <td>
+                Name
+              </td>
+              <td>
+                Quantity
+              </td>
+              <td class="text-right">
+                Rate
+              </td>
+              <td class="text-right">
+                Cost
+              </td>
+              <td class="text-right">
+                Tax
+              </td>
+              <td class="text-right">
+                Amount
+              </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="billedProducts in billData.billingProductsList">
+              <td class="desc">
+                <div>
+                  {{billedProducts.product.name}}
+                </div>
+              </td>
+              <td>
+                <div>
+                  {{billedProducts.quantity}}
+                </div>
+              </td>
+              <td class="text-right">
+                <div>
+                  Rs. {{billedProducts.product.rate}}
+                </div>
+              </td>
+              <td class="text-right">
+                <div class="text-success">
+                  Rs. {{billedProducts.costAmount}}
+                </div>
+              </td>
+              <td class="text-right">
+                <div>
+                  Rs. {{billedProducts.tax}}
+                </div>
+              </td>
+              <td class="text-right">
+                <div class="text-success">
+                  Rs. {{billedProducts.costAmount + billedProducts.tax}}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            <tfooter>
               <tr>
-                <td>
-                  Name
-                </td>
-                <td>
-                  Quantity
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                  <span class="text-danger">Total:</span>
                 </td>
                 <td class="text-right">
-                  Rate
-                </td>
-                <td class="text-right">
-                  Tax
-                </td>
-                <td class="text-right">
-                  Cost
-                </td>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="billedProducts in billData.billingProductsList">
-                <td class="desc">
                   <div>
-                    {{billedProducts.product.name}}
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    {{billedProducts.quantity}}
+                    Rs.{{billData.costAmount}}
                   </div>
                 </td>
                 <td class="text-right">
                   <div>
-                    Rs. {{billedProducts.product.rate}}
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    Rs. {{billedProducts.tax}}
+                    Rs.{{billData.taxAmount}}
                   </div>
                 </td>
                 <td class="text-right">
-                  <div class="text-success">
-                    Rs. {{billedProducts.costAmount}}
+                  <div>
+                    Rs.{{billData.totalAmount}}
                   </div>
                 </td>
               </tr>
-              </tbody>
-              <tfooter>
-                <tr>
-                  <td></td>
-                  <td>
-                    <div>
-                      {{}}
-                    </div>
-                  </td>
-                  <td>
-                    <span class="text-danger">Total:</span>
-                    <span class="pull-right">{{}}</span>
-                  </td>
-                  <td>
-                    <div>
-                      {{}}
-                    </div>
-                  </td>
-                  <td class="text-right">
-                    <div class="h4">
-                      {{}}
-                    </div>
-                  </td>
-                </tr>
-              </tfooter>
-            </table>
-          </div>
+            </tfooter>
+          </table>
         </div>
       </div>
-
     </div>
+
   </div>
 </div>

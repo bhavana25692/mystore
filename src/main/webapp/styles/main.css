@@ -22,5 +22,9 @@ body {
 }
 
 td {
-    vertical-align: middle !importants  x   ;
+    vertical-align: middle !important;
+}
+
+.m-t-md{
+    margin-top: 15px;
 }
