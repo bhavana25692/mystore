@@ -12,7 +12,6 @@ app.controller('ContainerCtrl',
         $scope.addItem = function($index) {
             var productAdded = ++$scope.productList[$index].quantity; //Increment product qty
             if(productAdded == 10) {
-                debugger
                 $scope.disableAdd[$index] = true;
             }
             $scope.showSelectQty[$index] = true;
