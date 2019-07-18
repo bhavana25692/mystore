@@ -1,17 +1,17 @@
 package com.mystore.model;
 
 public class Product {
-    private long id;
+    private int id;
     private String barCode;
     private String name;
-    private Category category;
+    private char category;
     private double rate;
 
     public Product() {
         super();
     }
 
-    public Product(long id, String barCode, String name, Category category, double rate) {
+    public Product(int id, String barCode, String name, char category, double rate) {
         this.id = id;
         this.barCode = barCode;
         this.name = name;
@@ -19,12 +19,20 @@ public class Product {
         this.rate = rate;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCategory(char category) {
+        this.category = category;
+    }
+
+    public char getCategory() {
+        return category;
     }
 
     public String getBarCode() {
@@ -41,14 +49,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public double getRate() {

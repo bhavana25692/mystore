@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 var app = angular.module('my-store',
-  ['ui.router', 'ui.select', 'ui.bootstrap']
+  ['ui.router']
 );
 
 app.config(function ($stateProvider, $urlRouterProvider) {

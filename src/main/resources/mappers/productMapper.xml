@@ -4,8 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mystore.dao.ProductDao">
 
-    <select id="getProductList" resultType="java.util.List">
-        SELECT * FROM PRODUCTS;
+    <select id="getProductList" resultType="com.mystore.model.Product">
+        SELECT ZZ.* FROM (SELECT
+         productid as id,
+         productname as name,
+         productrate as rate,
+         productbarcode as barCode,
+         category as category
+         FROM PRODUCTS) ZZ
     </select>
 
 </mapper>

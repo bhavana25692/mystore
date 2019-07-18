@@ -29,7 +29,7 @@ public class BillManager {
         for(BillingProducts billingProduct : billingProductsList){
             int qty = billingProduct.getQuantity();
             double rate = billingProduct.getProduct().getRate();
-            Category category = billingProduct.getProduct().getCategory();
+            char category = billingProduct.getProduct().getCategory();
             double tax = calculateTax(qty, rate, category); //gives tax amount for current product
             double cost = calculateCost(qty, rate, tax); //gives cost for the current product
             billingProduct.setTax(tax);
@@ -48,16 +48,16 @@ public class BillManager {
     }
 
     //Calculates tax for one item based on category
-    public double calculateTax(int qty, double rate, Category category) {
+    public double calculateTax(int qty, double rate, char category) {
         double taxRate = 0;
         switch (category) {
-            case A :
+            case 'A' :
                 taxRate = 0.1;
                 break;
-            case B:
+            case 'B':
                 taxRate = 0.2;
                 break;
-            case C:
+            case 'C':
                 taxRate = 0;
                 break;
         }

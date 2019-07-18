@@ -30,7 +30,6 @@ public class ProductService {
     @Path("/productList")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Product> getProductList() {
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$");
         return productManager.getProductList();
     }
 }
