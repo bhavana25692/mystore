@@ -14,7 +14,7 @@
     <jersey.version>2.23.2</jersey.version>
     <quartz.version>2.2.1</quartz.version>
     <jasper.version>6.1.0</jasper.version>
-    <json.version>2.5.4</json.version>
+    <json.version>2.10.3</json.version>
     <log.version>1.7.21</log.version>
   </properties>
 
