@@ -10,7 +10,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <servlet.api.version>3.1.0</servlet.api.version>
-    <spring.version>4.2.3.RELEASE</spring.version>
+    <spring.version>5.2.10.RELEASE</spring.version>
     <jersey.version>2.23.2</jersey.version>
     <quartz.version>2.2.1</quartz.version>
     <jasper.version>6.1.0</jasper.version>
